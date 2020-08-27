@@ -1,6 +1,8 @@
 import { Router } from 'express';
-import { uuid } from 'uuidv4';
+import { v4 as uuid } from 'uuid';
+
 import { startOfHour, parseISO, isEqual } from 'date-fns';
+import Appointment from '../models/Appointment';
 // parseISO irá converter uma data em formato de string para
 // o formato Date() do JS
 
@@ -8,13 +10,7 @@ import { startOfHour, parseISO, isEqual } from 'date-fns';
 
 const appointmentsRouter = Router();
 
-interface Appointment {
-  id: string;
-  provider: string;
-  date: Date;
-}
-
-const appointments = [];
+const appointments: Appointment[] = [];
 
 appointmentsRouter.post('/', (request, response) => {
   const { provider, date } = request.body;
