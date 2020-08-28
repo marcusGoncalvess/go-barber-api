@@ -11,6 +11,10 @@ class AppointmentsRepository {
   // Para Ler,buscar,criar ou alterar a entidade apenas
   // esse repositorio deve ser capaz de fazer isso
 
+  public all(): Appointment[] {
+    return this.appointments;
+  }
+
   public findByDate(date: Date): Appointment | null {
     const findAppointment = this.appointments.find(appointment =>
       isEqual(date, appointment.date),
