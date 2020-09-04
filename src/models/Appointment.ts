@@ -1,19 +1,18 @@
-import { v4 as uuid } from 'uuid';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
+// Entity = um model que será salvo no db
+// appointments = nome da tabela
+// Decorador vai passar que esse nosso modal será salvo dentro da tabela appointments
+@Entity('appointments')
 class Appointment {
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Column()
   provider: string;
 
+  @Column('timestamp with time zone')
   date: Date;
-
-  // pegando a interface do proprio objeto mas omitindo o id
-  // isso porque o id não vem como parametro
-  constructor({ provider, date }: Omit<Appointment, 'id'>) {
-    this.id = uuid();
-    this.provider = provider;
-    this.date = date;
-  }
 }
 
 export default Appointment;
