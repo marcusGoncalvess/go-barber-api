@@ -4,6 +4,8 @@ import { getCustomRepository } from 'typeorm';
 import { parseISO } from 'date-fns';
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
 import CreateAppointmentService from '../services/CreateAppointmentService';
+
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 // parseISO irá converter uma data em formato de string para
 // o formato Date() do JS
 
@@ -12,6 +14,8 @@ import CreateAppointmentService from '../services/CreateAppointmentService';
 // Rota: Receber a req, chamar outro arquivo, devolver resposta
 // Se a rota está fazendo mais coisas, precisa ser abstraido
 const appointmentsRouter = Router();
+
+appointmentsRouter.use(ensureAuthenticated);
 
 appointmentsRouter.get('/', async (request, response) => {
   const appointmentsRepository = getCustomRepository(AppointmentsRepository);
