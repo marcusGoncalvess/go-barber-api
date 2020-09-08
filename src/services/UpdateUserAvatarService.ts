@@ -4,7 +4,6 @@ import fs from 'fs';
 
 import uploadConfig from '../config/upload';
 import User from '../models/User';
-import usersRouter from '../routes/users.routes';
 
 interface Request {
   user_id: string;
