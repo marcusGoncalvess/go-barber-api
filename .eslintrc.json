@@ -33,7 +33,11 @@
         "prettier/prettier": "error",
         "class-methods-use-this": "off",
         "@typescript-eslint/camelcase": "off",
-        "camelcase": "off"
+        "camelcase": "off",
+        // Var que for igual _ será ignorado o erro
+        "@typescript-eslint/no-unused-vars": ["error", {
+          "argsIgnorePattern": "_"
+        }]
     },
     "settings": {
         "import/resolver": {
